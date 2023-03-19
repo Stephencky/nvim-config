@@ -10,4 +10,4 @@ git clone https://github.com/Stephencky/nvim-config.git ~/.config/nvim
 * plugins-setup.lua 文件用于新增插件，保存该文件会自动下载插件，或者执行:PackerInstall命令
 
 ## 批注
-该仓库配置参考自https://github.com/josean-dev/dev-environment-files，感兴趣的伙伴可以查看原始仓库，还有youtube视频教程
+该仓库配置参考自https://github.com/josean-dev/dev-environment-files 感兴趣的伙伴可以查看原始仓库，还有youtube视频教程

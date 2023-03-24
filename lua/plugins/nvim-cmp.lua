@@ -1,6 +1,6 @@
 local cmp_status, cmp = pcall(require, "cmp")
 if not cmp_status then
-  return 
+  return
 end
 
 local luasnip_status, luasnip = pcall(require, "luasnip")
@@ -16,7 +16,7 @@ vim.opt.completeopt = "menu,menuone,noselect"
 cmp.setup({
   snippet = {
     expand = function(args)
-      luasnpi.lsp_expand(args.body)  
+      luasnip.lsp_expand(args.body)
     end,
   },
   mapping = cmp.mapping.preset.insert({

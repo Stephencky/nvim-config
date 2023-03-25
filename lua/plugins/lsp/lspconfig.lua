@@ -10,12 +10,10 @@ if not cmp_nvim_lsp_status then
   return
 end
 
-local typescript_setup, typescript = pcall(require, "typescript")
-if not typescript then
-  print("Failed to load typescript")
-  return
+local overloads_setup, overloads = pcall(require, "lsp-overloads")
+if not overloads_setup then
+  print("Failed to load nvim overload")
 end
-
 
 local keymap = vim.keymap
 
@@ -38,12 +36,30 @@ local on_attach = function(client, bufnr)
   keymap.set("n", "K", "<cmd>Lspsaga hover_doc<CR>", opts) -- show documentation for what is under cursor
   keymap.set("n", "<leader>o", "<cmd>LSoutlineToggle<CR>", opts) -- see outline on right hand side
 
-  -- typescript specific keymaps (e.g. rename file and update imports)
-  -- if client.name == "tsserver" then
-  --  keymap.set("n", "<leader>rf", ":TypescriptRenameFile<CR>") -- rename file and update imports
-  --  keymap.set("n", "<leader>oi", ":TypescriptOrganizeImports<CR>") -- organize imports (not in youtube nvim video)
-  --  keymap.set("n", "<leader>ru", ":TypescriptRemoveUnused<CR>") -- remove unused variables (not in youtube nvim video)
-  -- end
+  -- 代码提示设置
+  if client.server_capabilities.signatureHelpProvider then
+    overloads.setup(client, {
+        -- UI options are mostly the same as those passed to vim.lsp.util.open_floating_preview
+        ui = {
+          border = "single",           -- The border to use for the signature popup window. Accepts same border values as |nvim_open_win()|.
+          height = nil,               -- Height of the signature popup window (nil allows dynamic sizing based on content of the help)
+          width = nil,                -- Width of the signature popup window (nil allows dynamic sizing based on content of the help)
+          wrap = true,                -- Wrap long lines
+          wrap_at = nil,              -- Character to wrap at for computing height when wrap enabled
+          max_width = nil,            -- Maximum signature popup width
+          max_height = nil,           -- Maximum signature popup height
+          -- Events that will close the signature popup window: use {"CursorMoved", "CursorMovedI", "InsertCharPre"} to hide the window when typing
+          close_events = {"CursorMoved", "CursorMovedI", "InsertCharPre"},
+          focusable = true,           -- Make the popup float focusable
+          focus = false,              -- If focusable is also true, and this is set to true, navigating through overloads will focus into the popup window (probably not what you want)
+          offset_x = 0,               -- Horizontal offset of the floating window relative to the cursor position
+          offset_y = 0,                -- Vertical offset of the floating window relative to the cursor position
+          floating_window_above_cur_line = false -- Attempt to float the popup above the cursor position 
+                                                 -- (note, if the height of the float would be greater than the space left above the cursor, it will default 
+                                                 -- to placing the float below the cursor. The max_height option allows for finer tuning of this)
+        },
+      })
+  end
 end
 
 -- used to enable autocompletion (assign to every lsp server config)

@@ -60,7 +60,9 @@ return packer.startup(function(use)
   use "hrsh7th/nvim-cmp"
   use "hrsh7th/cmp-buffer"
   use "hrsh7th/cmp-path"
-
+  
+  -- 显示函数提示
+  use { 'Issafalcon/lsp-overloads.nvim'}
   -- snippets
   use "L3MON4D3/LuaSnip"
   use "saadparwaiz1/cmp_luasnip"

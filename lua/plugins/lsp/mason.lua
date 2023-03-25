@@ -10,7 +10,15 @@ if not mason_lspconfig_status then
   return
 end
 
-mason.setup()
+mason.setup({
+    ui = {
+        icons = {
+            package_installed = "✓",
+            package_pending = "➜",
+            package_uninstalled = "✗"
+        }
+    }
+})
 
 mason_lspconfig.setup({
   ensure_installed = {

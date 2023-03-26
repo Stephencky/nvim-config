@@ -15,6 +15,12 @@ keymap.set("n", "<leader>tx", ":tabclose<CR>") --close current tab
 keymap.set("n", "<leader>tn", ":tabn<CR>") -- go to next tab
 keymap.set("n", "<leader>tp", ":tabp<CR>") -- go to previous tab
 
+-- 方向键替代
+keymap.set("i", "<C-l>", "<right>")
+keymap.set("i", "<C-h>", "<left>")
+keymap.set("i", "<C-j>", "<down>")
+keymap.set("i", "<C-k>", "<up>")
+
 -- quick quit
 keymap.set("n", "<leader>q", ":q!<CR>")
 keymap.set("n", "<leader>w", ":wq!<CR>")

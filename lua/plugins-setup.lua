@@ -80,8 +80,8 @@ return packer.startup(function(use)
   use "onsails/lspkind.nvim"
 
   -- formatting & linting
-  -- use("jose-elias-alvarez/null-ls.nvim") -- configure formatters & linters
-  -- use("jayp0521/mason-null-ls.nvim") -- bridges gap b/w mason & null-ls
+  use("jose-elias-alvarez/null-ls.nvim") -- configure formatters & linters
+  use("jayp0521/mason-null-ls.nvim") -- bridges gap b/w mason & null-ls
 
   -- treesitter configuration
   use({
@@ -99,9 +99,15 @@ return packer.startup(function(use)
   -- git integration
   use("lewis6991/gitsigns.nvim") -- show line modifications on left hand side
 
+  --toggle term 
+  use {"akinsho/toggleterm.nvim", tag = '*'}
+
+
   -- auto save 
   use "Pocco81/auto-save.nvim"
   if packer_bootstrap then
     require("packer").sync()
   end
+
+
 end)

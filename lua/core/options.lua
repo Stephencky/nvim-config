@@ -16,7 +16,7 @@ opt.wrap = false
 
 -- search 
 opt.ignorecase = true
-opt.smartcase = ture
+opt.smartcase = true
 
 
 -- cursor line 
@@ -40,4 +40,4 @@ opt.splitbelow = true
 opt.iskeyword:append("-")
 
 
-
+opt.title = false

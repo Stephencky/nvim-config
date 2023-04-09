@@ -21,7 +21,7 @@ vim.cmd([[
 
 local status, packer = pcall(require, "packer")
 if not status then
-  return 
+  return
 end
 
 return packer.startup(function(use)
@@ -52,9 +52,10 @@ return packer.startup(function(use)
   -- statusline
   use "nvim-lualine/lualine.nvim"
 
-  -- fuzzy finding
+  -- telescope fuzzy finding
   use { "nvim-telescope/telescope-fzf-native.nvim", run = "make" }
-  use { "nvim-telescope/telescope.nvim", branch = "0.1.x"}
+  use { "nvim-telescope/telescope.nvim", branch = "0.1.x", requires = {{"nvim-telescope/telescope-live-grep-args.nvim"}}}
+  use { "ahmedkhalf/project.nvim" }
 
   -- auto completion
   use "hrsh7th/nvim-cmp"
@@ -102,12 +103,16 @@ return packer.startup(function(use)
   --toggle term 
   use {"akinsho/toggleterm.nvim", tag = '*'}
 
-
   -- auto save 
   use "Pocco81/auto-save.nvim"
+
+  -- bufferline 
+  use "nvim-tree/nvim-web-devicons"
+  use {'akinsho/bufferline.nvim', tag = "v3.*", requires = 'nvim-tree/nvim-web-devicons'}
+  use {'glepnir/dashboard-nvim', requires = {'nvim-tree/nvim-web-devicons'}}
+
   if packer_bootstrap then
     require("packer").sync()
   end
-
 
 end)

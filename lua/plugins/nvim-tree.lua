@@ -11,12 +11,12 @@ vim.cmd[[ highlight NvimTreeIndentMarker guifg=#3FC5FF ]]
 
 local function open_nvim_tree(data)
   -- buffer is a [No Name]
-  local no_name = data.file == "" and vim.bo[data.buf].buftype == ""
+  -- local no_name = data.file == "" and vim.bo[data.buf].buftype == ""
 
   -- buffer is a directory
   local directory = vim.fn.isdirectory(data.file) == 1
 
-  if not no_name and not directory then
+  if not directory then
     return
   end
 
@@ -41,8 +41,12 @@ nvimtree.setup({
       },
     },
   },
+  view = {
+    width = 35
+  },
+  filters = {
+    dotfiles = false,
+    git_clean = true
+
+  }
 })
-
-
-
-

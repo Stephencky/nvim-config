@@ -24,7 +24,7 @@ bufferline.setup({
       style = "underline"
     },
     name_formatter = function(buf)  -- buf contains:
-        return buf.buffers
+        return buf.name
           -- name                | str        | the basename of the active file
           -- path                | str        | the full path of the active file
           -- bufnr (buffer only) | int        | the number of the active buffer

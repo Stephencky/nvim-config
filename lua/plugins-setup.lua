@@ -27,7 +27,8 @@ end
 return packer.startup(function(use)
   -- 外观
   use "wbthomason/packer.nvim"
-  use { "bluz71/vim-nightfly-guicolors", as="nightfly"}
+  -- use { "bluz71/vim-nightfly-guicolors", as="nightfly"}
+  use "lunarvim/darkplus.nvim"
 
   -- 许多插件使用的lua函数
   use "nvim-lua/plenary.nvim"
@@ -55,6 +56,7 @@ return packer.startup(function(use)
   -- telescope fuzzy finding
   use { "nvim-telescope/telescope-fzf-native.nvim", run = "make" }
   use { "nvim-telescope/telescope.nvim", branch = "0.1.x", requires = {{"nvim-telescope/telescope-live-grep-args.nvim"}}}
+  use { "nvim-telescope/telescope-file-browser.nvim", dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" } }
   use { "ahmedkhalf/project.nvim" }
 
   -- auto completion
@@ -110,6 +112,12 @@ return packer.startup(function(use)
   use "nvim-tree/nvim-web-devicons"
   use {'akinsho/bufferline.nvim', tag = "v3.*", requires = 'nvim-tree/nvim-web-devicons'}
   use {'glepnir/dashboard-nvim', requires = {'nvim-tree/nvim-web-devicons'}}
+
+  -- 代码跳转
+  use { 'phaazon/hop.nvim', branch = 'v2'}
+
+  -- 自定义命令管理
+  use { "LinArcX/telescope-command-palette.nvim" }
 
   if packer_bootstrap then
     require("packer").sync()

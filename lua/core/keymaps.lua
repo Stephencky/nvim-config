@@ -34,14 +34,36 @@ keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>")
 -- telescope
 keymap.set("n", "<c-p>", ":Telescope git_files<cr>")
 keymap.set("n", "<leader>ff", ":Telescope find_files<cr>")
-keymap.set("n", "<leader>fs", ":Telescope live_grep<cr>")
 keymap.set("n", "<leader>fg", require("telescope").extensions.live_grep_args.live_grep_args, { noremap = true })
 local live_grep_args_shortcuts = require("telescope-live-grep-args.shortcuts")
 keymap.set("n", "<leader>fw", live_grep_args_shortcuts.grep_word_under_cursor)
-keymap.set("n", "<leader>fc", ":Telescope grep_string<cr>")
-keymap.set("n", "<leader>fb", ":Telescope buffers<cr>")
+keymap.set("n", "<leader>fb",
+  function()
+    require("telescope.builtin").buffers(
+        require('telescope.themes').get_dropdown {
+          winblend = 10,
+          previewer = false,
+        }
+    )
+  end
+)
 keymap.set("n", "<leader>fh", ":Telescope help_tags<cr>")
-keymap.set("n", "<leader><Space>", ":Telescope<cr>")
+keymap.set("n", "<leader>fs",
+  function()
+	  require('telescope.builtin').grep_string(
+      require('telescope.themes').get_dropdown {
+		    winblend = 10,
+  		  previewer = false,
+      }
+   )
+  end
+)
+
+keymap.set('n', '<C-f>',
+  function()
+    local opt = {default_text=vim.fn.expand('<cword>'), sorting_strategy='ascending'}
+	  require('telescope.builtin').current_buffer_fuzzy_find(opt)
+  end, { desc = '[/] Fuzzily search in current buffer' })
 
 -- bufferline 
 keymap.set("n", "<leader>1", "<cmd>BufferLineGoToBuffer 1<cr>")
@@ -50,5 +72,22 @@ keymap.set("n", "<leader>3", "<cmd>BufferLineGoToBuffer 3<cr>")
 keymap.set("n", "<leader>4", "<cmd>BufferLineGoToBuffer 4<cr>")
 keymap.set("n", "<leader>5", "<cmd>BufferLineGoToBuffer 5<cr>")
 keymap.set("n", "<leader>x", "<cmd>BufferLinePickClose<cr>")
+keymap.set("n", "<leader>p", "<cmd>BufferLinePick<cr>")
 keymap.set("n", "<leader>h", "<cmd>BufferLineCyclePrev<cr>")
 keymap.set("n", "<leader>l", "<cmd>BufferLineCycleNext<cr>")
+
+-- hop 替代默认设置
+local hop = require('hop')
+local directions = require('hop.hint').HintDirection
+vim.keymap.set('', 'f', function()
+  hop.hint_char1({ direction = directions.AFTER_CURSOR})
+end, {remap=true})
+vim.keymap.set('', 'F', function()
+  hop.hint_char1({ direction = directions.BEFORE_CURSOR})
+end, {remap=true})
+vim.keymap.set('', 't', function()
+  hop.hint_char1({ direction = directions.AFTER_CURSOR, hint_offset = -1 })
+end, {remap=true})
+vim.keymap.set('', 'T', function()
+  hop.hint_char1({ direction = directions.BEFORE_CURSOR, hint_offset = 1 })
+end, {remap=true})

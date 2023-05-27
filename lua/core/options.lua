@@ -41,3 +41,7 @@ opt.iskeyword:append("-")
 
 
 opt.title = false
+
+vim.g.blamer_enabled = 1
+vim.g.blamer_delay = 500
+vim.g.template = '<committer>, <commit-short> <committer-time> • <summary'

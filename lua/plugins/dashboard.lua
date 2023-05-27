@@ -4,6 +4,4 @@ if not setup then
   return
 end
 
-dashboard.setup({
-  
-})
+dashboard.setup({})

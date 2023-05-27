@@ -57,6 +57,7 @@ return packer.startup(function(use)
   use { "nvim-telescope/telescope-fzf-native.nvim", run = "make" }
   use { "nvim-telescope/telescope.nvim", branch = "0.1.x", requires = {{"nvim-telescope/telescope-live-grep-args.nvim"}}}
   use { "nvim-telescope/telescope-file-browser.nvim", dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" } }
+  use {'nvim-telescope/telescope-ui-select.nvim' }
   use { "ahmedkhalf/project.nvim" }
 
   -- auto completion
@@ -118,6 +119,15 @@ return packer.startup(function(use)
 
   -- 自定义命令管理
   use { "LinArcX/telescope-command-palette.nvim" }
+
+  -- 滚动
+  use 'karb94/neoscroll.nvim'
+
+  -- git历史查看
+  use "APZelos/blamer.nvim"
+
+  -- outline插件
+  use 'simrat39/symbols-outline.nvim'
 
   if packer_bootstrap then
     require("packer").sync()

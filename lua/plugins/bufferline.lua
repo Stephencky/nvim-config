@@ -20,9 +20,6 @@ bufferline.setup({
     },
     numbers = "ordinal",
     tab_size = 5,
-    indicator = {
-      style = "underline"
-    },
     name_formatter = function(buf)  -- buf contains:
         return buf.name
           -- name                | str        | the basename of the active file

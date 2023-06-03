@@ -28,6 +28,7 @@ return packer.startup(function(use)
   -- 外观
   use "wbthomason/packer.nvim"
   -- use { "bluz71/vim-nightfly-guicolors", as="nightfly"}
+  use { "ellisonleao/gruvbox.nvim" }
   use "lunarvim/darkplus.nvim"
 
   -- 许多插件使用的lua函数

@@ -45,3 +45,9 @@ opt.title = false
 vim.g.blamer_enabled = 1
 vim.g.blamer_delay = 500
 vim.g.template = '<committer>, <commit-short> <committer-time> • <summary'
+
+-- fold
+opt.foldenable = true
+opt.foldlevel = 20
+opt.foldmethod = "expr"
+opt.foldexpr = "nvim_treesitter#foldexpr()"

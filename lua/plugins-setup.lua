@@ -130,6 +130,11 @@ return packer.startup(function(use)
   -- outline插件
   use 'simrat39/symbols-outline.nvim'
 
+  -- markdonw previewer
+  use({
+    "iamcco/markdown-preview.nvim",
+    run = function() vim.fn["mkdp#util#install"]() end,
+  })
   if packer_bootstrap then
     require("packer").sync()
   end

@@ -51,3 +51,6 @@ opt.foldenable = true
 opt.foldlevel = 20
 opt.foldmethod = "expr"
 opt.foldexpr = "nvim_treesitter#foldexpr()"
+
+-- markdown preivewer
+vim.g.mkdp_auto_close = 1

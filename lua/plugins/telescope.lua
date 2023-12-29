@@ -32,6 +32,8 @@ if not pro_setup then
 end
 projects.setup({})
 
+-- Useful for easily creating commands
+local z_utils = require("telescope._extensions.zoxide.utils")
 
 -- configure telescope
 telescope.setup({
@@ -50,6 +52,22 @@ telescope.setup({
     current_buffer_fuzzy_find = {
       theme = "dropdown",
       previewer=false,
+      winblend=10,
+    },
+    find_files = {
+      theme = "dropdown",
+      previewer=false,
+      winblend=10,
+    },
+    git_files = {
+      theme = "dropdown",
+      previewer=false,
+      winblend=10,
+    },
+    commands = {
+      theme = "dropdown",
+      previewer=false,
+      winblend=15,
     }
   },
   extensions = {
@@ -113,10 +131,27 @@ telescope.setup({
         { "keymaps", ":lua require('telescope.builtin').keymaps()" },
         { "buffers", ":Telescope buffers" },
         { "search history", ":lua require('telescope.builtin').search_history()" },
-      },
-   },
+      }
   },
-
+  zoxide = {
+    prompt_title = "\\ Root Directory /",
+    mappings = {
+      default = {
+          after_action = function(selection)
+            print("Update to (" .. selection.z_score .. ") " .. selection.path)
+          end
+      },
+      ["<C-o>"] = {
+        before_action = function(selection) print("before C-o") end,
+        action = function(selection)
+          vim.cmd.edit(selection.path)
+        end
+      },
+      -- Opens the selected entry in a new split
+      ["<C-q>"] = { action = z_utils.create_basic_command("split") },
+    },
+  }
+}
 })
 
 telescope.load_extension("fzf")
@@ -125,6 +160,7 @@ telescope.load_extension("projects")
 telescope.load_extension("file_browser")
 telescope.load_extension("command_palette")
 telescope.load_extension("ui-select")
+telescope.load_extension('zoxide')
 
 -- my telescopic customizations
 local M = {}

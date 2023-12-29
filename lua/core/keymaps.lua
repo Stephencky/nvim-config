@@ -4,7 +4,6 @@ local keymap = vim.keymap
 keymap.set("i", "jk", "<ESC>")
 -- keymap.set("n", "<leader>nh", ":nohl<CR>")
 keymap.set("n", "x", '"_x')
-
 keymap.set("n", "<leader>a", "ggVG")
 
 keymap.set("n", "<leader>sv", "<C-w>v", {desc="split windows vertically"})
@@ -102,3 +101,19 @@ keymap.set('n', "<leader>o", ":SymbolsOutline<cr>", {desc="Show code outline"})
 
 -- run python
 keymap.set("n", "<F12>", ":TermExec cmd='python %:p'<cr>")
+
+--zoxide
+keymap.set("n", "<leader>cd", ":Telescope zoxide list<cr>")
+
+-- nvim dap 
+keymap.set("n", "<leader>db", "<cmd> DapToggleBreakpoint <CR>", {desc="Add breakpoint at line"})
+keymap.set("n", "<leader>dr", "<cmd> DapContinue <CR>", {desc="Start or continue the debugger"})
+
+
+-- nivm trouble
+vim.keymap.set("n", "<leader>xx", function() require("trouble").toggle() end)
+vim.keymap.set("n", "<leader>xw", function() require("trouble").toggle("workspace_diagnostics") end)
+vim.keymap.set("n", "<leader>xd", function() require("trouble").toggle("document_diagnostics") end)
+vim.keymap.set("n", "<leader>xq", function() require("trouble").toggle("quickfix") end)
+vim.keymap.set("n", "<leader>xl", function() require("trouble").toggle("loclist") end)
+vim.keymap.set("n", "gR", function() require("trouble").toggle("lsp_references") end)

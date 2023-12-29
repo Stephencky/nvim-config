@@ -78,20 +78,11 @@ for _, lsp in pairs(servers) do
 end
 
 lspconfig["lua_ls"].setup({
-  capabilities = capabilities,
-  on_attach = on_attach,
+  -- capabilities = capabilities,
+  -- on_attach = on_attach,
   settings = {
-    Lua = {
-      -- make the language server reconize "vim"
-      diagnostics = {
-        globals = { "vim" },
-      },
-      workspace = {
-        library = {
-          [vim.fn.expand("$VIMRUNTIME/lua")] = true,
-          [vim.fn.stdpath("config") .. "/lua"] = true,
-        },
-      },
-    },
+     completion = {
+          callSnippet = "Replace"
+     }
   },
 })

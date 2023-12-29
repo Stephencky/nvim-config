@@ -135,6 +135,34 @@ return packer.startup(function(use)
     "iamcco/markdown-preview.nvim",
     run = function() vim.fn["mkdp#util#install"]() end,
   })
+
+  use "jvgrootveld/telescope-zoxide"
+
+  -- nvim debugger
+  use 'mg979/vim-visual-multi'
+  use 'mfussenegger/nvim-dap'
+  use "folke/neodev.nvim"
+  use {
+    "jay-babu/mason-nvim-dap.nvim",
+    event = "VeryLazy",
+    dependencies = {
+      "williamboman/mason.nvim",
+      "mfussenegger/nvim-dap",
+    },
+    opts = {
+      handlers = {}
+    },
+  }
+  use { "rcarriga/nvim-dap-ui",
+      requires = {"mfussenegger/nvim-dap"},
+      event = "VeryLazy"
+  }
+  -- nvim trouble 
+  use {
+    "folke/trouble.nvim",
+     dependencies = { "nvim-tree/nvim-web-devicons" },
+  }
+
   if packer_bootstrap then
     require("packer").sync()
   end
